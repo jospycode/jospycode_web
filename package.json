@@ -2,7 +2,7 @@
   "name": "jospy-code-v-1-0",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.io",
+  "homepage": "https://jospycode",
   "type": "module",
   "scripts": {
     "dev": "vite",

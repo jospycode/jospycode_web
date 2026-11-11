@@ -4,15 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jospy Code | Desarrollo Web</title>
-    <meta name="google-site-verification" content="qcnDIvVO3USxHp9O-qwE57DPis79CGQLpiVh-N26qvM" />
-    <meta name="description" content="Jospy Code es un sitio web dedicado al desarrollo web, desarrolando sitios para negocios, para programadores y entusiastas de la tecnología." />
+    <meta
+      name="google-site-verification"
+      content="qcnDIvVO3USxHp9O-qwE57DPis79CGQLpiVh-N26qvM"
+    />
+    <meta
+      name="description"
+      content="Jospy Code es un sitio web dedicado al desarrollo web, desarrolando sitios para negocios, para programadores y entusiastas de la tecnología."
+    />
     <meta property="og:title" content="Jospy Code | Desarrollo Web" />
-    <meta property="og:description" content="Desarrollo web, desarrollo de landing pages, desarrollo de aplicaciones web, desarrollo de sitios web, desarrollo de sitios multiusos, desarrollo de e-comerce." />
-    <meta property="og:image" content="https://www.facebook.com/share/p/1RAb2n61TP/" />
+    <meta
+      property="og:description"
+      content="Desarrollo web, desarrollo de landing pages, desarrollo de aplicaciones web, desarrollo de sitios web, desarrollo de sitios multiusos, desarrollo de e-comerce."
+    />
+    <meta
+      property="og:image"
+      content="https://www.facebook.com/share/p/1RAb2n61TP/"
+    />
     <meta property="og:url" content="https://jospycodeweb.vercel.app/" />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/png" href="/public/Icono_logo.png" />
-    </head>
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1976597090392332");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1976597090392332&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

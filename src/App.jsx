@@ -6,14 +6,30 @@ export default function App() {
 
   useEffect(() => {
     const header = document.querySelector('header');
-    const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('header nav ul li a');
     const sections = document.querySelectorAll('section[id]');
     const prevBtn = document.getElementById('carruselPrev');
     const nextBtn = document.getElementById('carruselNext');
     const carrusel = document.getElementById('carrusel');
 
-    //Header Compacto al Hacer Scroll
+    // Animación de escritura línea por línea para el globo del avatar
+    const globoElement = document.getElementById('avatarGlobo');
+    const contactoSection = document.getElementById('Contacto');
+
+    const globoObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          globoElement?.classList.add('animate-typing');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (contactoSection) {
+      globoObserver.observe(contactoSection);
+    }
+
+    // Header Compacto al Hacer Scroll
     const controlarHeaderScroll = () => {
       if (header) {
         if (window.scrollY > 30) {
@@ -24,7 +40,7 @@ export default function App() {
       }
     };
 
-    //Scrollspy (Destacar sección activa)
+    // Scrollspy (Destacar sección activa)
     const activarScrollspy = () => {
       const scrollY = window.pageYOffset;
       const headerHeight = header ? header.offsetHeight : 0;
@@ -61,7 +77,7 @@ export default function App() {
     controlarHeaderScroll();
     activarScrollspy();
 
-    //Desplazamiento Suave con Compensación
+    // Desplazamiento Suave con Compensación
     const handleAnchorClick = (e) => {
       const targetId = e.currentTarget.getAttribute('href');
       if (targetId && targetId !== '#') {
@@ -85,7 +101,7 @@ export default function App() {
     const anchors = document.querySelectorAll('a[href^="#"]');
     anchors.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick));
 
-    //Navegación del Carrusel
+    // Navegación del Carrusel
     const obtenerAnchoDesplazamiento = () => {
       const primeraCarta = carrusel?.querySelector('.carta-carrusel');
       return primeraCarta ? primeraCarta.offsetWidth + 24 : (carrusel?.clientWidth || 300);
@@ -102,8 +118,8 @@ export default function App() {
     prevBtn?.addEventListener('click', handlePrev);
     nextBtn?.addEventListener('click', handleNext);
 
-    // Animaciones de Aparición 
-    const elementosParaAnimar = document.querySelectorAll('.carta, .carta-carrusel, .plan, .contacto-detalles, .inicio-texto');
+    // Animaciones de Aparición (incluyendo tarjetas, detalles estadísticos y títulos)
+    const elementosParaAnimar = document.querySelectorAll('.carta, .carta-carrusel, .plan, .contacto-detalles, .inicio-texto, .info .detalles, h3, h4');
     elementosParaAnimar.forEach((el) => el.classList.add('reveal-element'));
 
     const observer = new IntersectionObserver((entries, obs) => {
@@ -123,6 +139,7 @@ export default function App() {
       prevBtn?.removeEventListener('click', handlePrev);
       nextBtn?.removeEventListener('click', handleNext);
       observer.disconnect();
+      globoObserver.disconnect();
     };
   }, []);
 
@@ -157,7 +174,7 @@ export default function App() {
       </header>
 
       <main>
-        {/* Sección Inicio*/}
+        {/* Sección Inicio */}
         <section className="inicio" id="Inicio">
           <div className="inicio-texto">
             <h2>
@@ -248,7 +265,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Sección Carrusel*/}
+        {/* Sección Carrusel */}
         <section className="carrusel-contenido">
           <h4>¿Por qué elegir Jospy Code?</h4>
           <p className="subtitulo">
@@ -299,7 +316,6 @@ export default function App() {
           <h4>Planes Transparentes y a Medida</h4>
           <p className="subtitulo">Elige la solución que mejor se adapte a las necesidades actuales de tu empresa</p>
           <div className="planes">
-            {/* Plan 1 */}
             <div className="plan plan1">
               <h5>IDEAL PARA CAMPAÑAS</h5>
               <span className="plan-nombre">Landing Page</span>
@@ -314,7 +330,6 @@ export default function App() {
               <a href="#Contacto" className="bton">Cotizar Landing Page</a>
             </div>
 
-            {/* Plan 2 (Destacado) */}
             <div className="plan plan2">
               <div className="badge-popular">Más Popular</div>
               <h5>NEGOCIOS EN CRECIMIENTO</h5>
@@ -330,7 +345,6 @@ export default function App() {
               <a href="#Contacto" className="bton">Cotizar Sitio Completo</a>
             </div>
 
-            {/* Plan 3 */}
             <div className="plan plan3">
               <h5>VENTAS EN LÍNEA</h5>
               <span className="plan-nombre">E-commerce / A Medida</span>
@@ -386,8 +400,9 @@ export default function App() {
           </div>
 
           <div className="avatar-seccion">
-            <div className="avatar-globo">
-              <span>Gracias por visitar Jospy Code.<br />¡Espero que volvamos a hablar pronto!</span>
+            <div className="avatar-globo" id="avatarGlobo">
+              <span className="typing-line line-1">Gracias por visitar Jospy Code.</span>
+              <span className="typing-line line-2">¡Espero que volvamos a hablar pronto!</span>
             </div>
             <div className="avatar-imagen-recorte">
               <img src="/Avatar_Camisa.png" alt="Avatar Jospy Code" className="avatar2" />
@@ -397,7 +412,7 @@ export default function App() {
 
         <hr className="footer-divider" />
 
-        {/* Footer*/}
+        {/* Footer */}
         <footer>
           <div className="footer-col footer-logo">
             <img src="/Jospy_code1.png" alt="Jospy Code" />

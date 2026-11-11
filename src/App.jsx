@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CookieConsent from 'react-cookie-consent';
 import './styles.css';
 
 export default function App() {
@@ -118,7 +119,7 @@ export default function App() {
     prevBtn?.addEventListener('click', handlePrev);
     nextBtn?.addEventListener('click', handleNext);
 
-    // Animaciones de Aparición (incluyendo tarjetas, detalles estadísticos y títulos)
+    // Animaciones de Aparición
     const elementosParaAnimar = document.querySelectorAll('.carta, .carta-carrusel, .plan, .contacto-detalles, .inicio-texto, .info .detalles, h3, h4');
     elementosParaAnimar.forEach((el) => el.classList.add('reveal-element'));
 
@@ -433,6 +434,47 @@ export default function App() {
           </div>
         </footer>
       </main>
+
+      {/* Banner de Consentimiento de Cookies */}
+      <CookieConsent
+        location="bottom"
+        buttonText="Aceptar"
+        declineButtonText="Rechazar"
+        enableDeclineButton
+        cookieName="jospyCodeCookieConsent"
+        style={{
+          background: "var(--text-dark)",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-body)",
+          alignItems: "center",
+          padding: "12px 24px",
+          boxShadow: "0 -4px 20px rgba(0, 0, 0, 0.15)",
+          zIndex: 9999,
+        }}
+        buttonStyle={{
+          backgroundColor: "var(--primary-blue)",
+          color: "#FFFFFF",
+          fontSize: "13.5px",
+          fontWeight: "600",
+          borderRadius: "8px",
+          padding: "8px 18px",
+          border: "none",
+          cursor: "pointer",
+        }}
+        declineButtonStyle={{
+          backgroundColor: "transparent",
+          color: "#94A3B8",
+          fontSize: "13.5px",
+          fontWeight: "500",
+          border: "1px solid var(--border-color)",
+          borderRadius: "8px",
+          padding: "8px 18px",
+          cursor: "pointer",
+        }}
+        expires={150}
+      >
+        Utilizamos cookies para optimizar la experiencia de navegación de nuestro sitio.
+      </CookieConsent>
     </>
   );
 }
